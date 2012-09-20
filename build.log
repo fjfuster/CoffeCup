@@ -1,0 +1,31 @@
+Logfile initialized
+[INFO] logfile = C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\build.log
+[DEBUG] C:\Users\Paco\AppData\Roaming\Titanium\mobilesdk\win32\2.1.2.GA\android\builder.py simulator Coffe Cup C:\Users\Paco\Android SDK C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup net.artvisual.coffecup 2 HVGA
+[INFO] Building Coffe Cup for Android ... one moment
+[INFO] Titanium SDK version: 2.1.2 (08/24/12 14:46 ed7f777)
+[DEBUG] Waiting for device to be ready ...
+[TRACE] adb devices returned 1 devices/emulators
+[DEBUG] Device connected... (waited 0 seconds)
+[DEBUG] waited 0.014000 seconds on emulator to get ready
+[DEBUG] net.artvisual.coffecup installed? True
+[INFO] Fastdev server running, deploying in Fastdev mode
+[INFO] Copying CommonJS modules...
+[INFO] Copying project resources..
+[TRACE] COPYING MODIFIED FILE: C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\functions.js => C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\build\android\bin\assets\Resources\functions.js
+[INFO] Tiapp.xml unchanged, skipping class generation
+[DEBUG] Processing Android resource drawables
+[DEBUG] found drawable-long-land-hdpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-long-land-hdpi\default.png
+[DEBUG] found drawable-long-land-ldpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-long-land-ldpi\default.png
+[DEBUG] found drawable-long-port-hdpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-long-port-hdpi\default.png
+[DEBUG] found drawable-long-port-ldpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-long-port-ldpi\default.png
+[DEBUG] found drawable-notlong-land-hdpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-notlong-land-hdpi\default.png
+[DEBUG] found drawable-notlong-land-ldpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-notlong-land-ldpi\default.png
+[DEBUG] found drawable-notlong-land-mdpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-notlong-land-mdpi\default.png
+[DEBUG] found drawable-notlong-port-hdpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-notlong-port-hdpi\default.png
+[DEBUG] found drawable-notlong-port-ldpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-notlong-port-ldpi\default.png
+[DEBUG] found drawable-notlong-port-mdpi splash screen at C:\Users\Paco\My Documents\Titanium_Studio_Workspace\Coffe Cup\Resources\android\images\res-notlong-port-mdpi\default.png
+[INFO] Waiting for SDCard to become available..
+[INFO] Re-launching application ... Coffe Cup
+[INFO] Launching application ... Coffe Cup
+[TRACE] Launch output: Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=net.artvisual.coffecup/.CoffeCupActivity }
+

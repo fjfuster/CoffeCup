@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="acs-oauth-secret-production" type="string">vtgLkIXaXtE5x2xn8cAusMOSx9ocmzgY</property>
+    <property name="acs-oauth-key-production" type="string">jVxZ1Q4tw6BLItOVRalJM2JkFLZFWAU1</property>
+    <property name="acs-api-key-production" type="string">Qxu9Nb82qqRPTQeBznH4vMiRdowXPNvl</property>
+    <property name="acs-oauth-secret-development" type="string">lsbibbCtTwLkb6DUweOlvnxdfb3LFvAT</property>
+    <property name="acs-oauth-key-development" type="string">REfSanDOaB5T9qX9fD5ttOFuKFu02NVh</property>
+    <property name="acs-api-key-development" type="string">e3Vf8K7B7T7L8cZAc6EVI2Rq3SoGh0MR</property>
+    <deployment-targets>
+        <target device="mobileweb">true</target>
+        <target device="iphone">false</target>
+        <target device="ipad">false</target>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+    </deployment-targets>
+    <sdk-version>2.1.2.GA</sdk-version>
+    <id>net.artvisual.coffecup</id>
+    <name>Coffe Cup</name>
+    <version>1.0</version>
+    <publisher>Paco</publisher>
+    <url>http://</url>
+    <description>not specified</description>
+    <copyright>2012 by Paco</copyright>
+    <icon>appicon.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>true</statusbar-hidden>
+    <fullscreen>true</fullscreen>
+    <navbar-hidden>true</navbar-hidden>
+    <analytics>true</analytics>
+    <guid>5557bd0d-941a-4106-9703-0b5ad7ba2bed</guid>
+    <property name="ti.ui.defaultunit">system</property>
+    <property name="ti.android.fastdev" type="bool">true</property>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+        <orientations device="ipad">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="commonjs" version="2.3.0">ti.cloud</module>
+    </modules>
+</ti:app>

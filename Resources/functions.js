@@ -1,9 +1,175 @@
 	/********************************/
+	/*       GALERIA FOTOS          */
+	/********************************/
+function obtener_galeria(){
+	var json;
+	var xhr = Titanium.Network.createHTTPClient({
+		onload: function(e){
+			//alert(this.responseText);
+			json=this.responseText;
+			insertar_galeria(json);
+			return json;
+		},
+		onerror: function(e){
+			alert('Error en la conexión');
+		},
+		timeout: 10000
+	});
+	
+	xhr.open("GET",'192.168.0.114/galeria.php');
+	xhr.send();
+	
+};
+function insertar_galeria(json){
+	var alto_foto=50;
+	
+	var galeria = Titanium.UI.createScrollView($$.galeria_scrollview);
+	json = JSON.parse(json);
+	 
+	
+	
+	
+	var col=0;
+	var fila=0;
+	var tope_i = json.length; //Nº de imagenes
+	for(var i=0;i<tope_i;i++){
+		if(i%3==0 && i>1){
+			fila++;
+			col=0;
+		}
+		var foto = Titanium.UI.createImageView($$.galeria_img);
+		foto.image=json[i].img_p;
+		foto.top = fila * alto_foto;
+		foto._id=json[i].id;
+		switch(col){
+			case 0:
+				foto.left='0dp';
+				break;
+			case 2:
+				foto.right='0dp';
+				break;
+			default:
+				
+		}
+		//Añadir eventos 
+		foto.addEventListener('click',function(e){
+			//alert(e.source._id);
+			win_ficha.left=Titanium.Platform.displayCaps.platformWidth +1;
+			load_datos_ficha(e.source._id);
+			win_ficha.zIndex=3;
+			
+			win_ficha.open();
+			win_ficha.animate({
+					left: 0, 
+					duration: 1500
+				});
+		
+			//win_galeria.hide();
+			//alert(win_ficha.left);
+			
+			
+		})
+		
+		galeria._foto=foto;
+		galeria.add(foto);
+		col++;
+		
+	};
+	win_galeria._galeria= galeria;
+	win_galeria.add(galeria);
+};
+function crear_win_galeria(js){
+	var alto_foto=50;
+	
+	var ventana = Titanium.UI.createWindow($$.win_galeria);
+	var lbl_galeria = Titanium.UI.createLabel($$.galeria_lbl);
+	lbl_galeria.text = '¿Quién es quién?';
+	ventana._lbl_galeria = lbl_galeria;
+	ventana.add(lbl_galeria);
+	//var galeria = Titanium.UI.createScrollView($$.galeria_scrollview);
+	
+	var js = obtener_galeria();
+	//js = JSON.parse(js);
+	//js=eval('('+js+')');
+	//alert(js);
+	
+	/*
+	
+	var col=0;
+	var fila=0;
+	var tope_i = 37; //Nº de imagenes
+	for(var i=0;i<tope_i;i++){
+		if(i%3==0 && i>1){
+			fila++;
+			col=0;
+		}
+		var foto = Titanium.UI.createImageView($$.galeria_img);
+		foto.top = fila * alto_foto;
+		foto._id=i;
+		switch(col){
+			case 0:
+				foto.left='0dp';
+				break;
+			case 2:
+				foto.right='0dp';
+				break;
+			default:
+				
+		}
+		//Añadir eventos 
+		foto.addEventListener('click',function(e){
+			//alert(e.source._id);
+			win_ficha.open();
+			win_ficha.zIndex=3;
+			win_galeria.hide();
+		})
+		
+		galeria._foto=foto;
+		galeria.add(foto);
+		col++;
+		
+	}
+	
+	
+	
+	ventana._galeria= galeria;
+	ventana.add(galeria);
+	*/
+	
+	
+	
+	return ventana;
+}
+
+
+	/********************************/
+	/*    FIN GALERIA FOTOS         */
+	/********************************/
+
+
+	/********************************/
 	/*       FICHA INDIVIDUAL       */
 	/********************************/
 	
 function crear_win_ficha(){
 	var ventana = Titanium.UI.createWindow($$.win_ficha);
+	
+	var swipe_zona = Titanium.UI.createView($$.swipe_zona);
+	ventana._swipe_zona=swipe_zona;
+	ventana.add(swipe_zona);
+	ventana.addEventListener('swipe', function(e){
+		//alert(e.direction)
+				if(e.direction==='right'){
+					win_ficha.animate({
+						left: Titanium.Platform.displayCaps.platformWidth +1, 
+						duration: 1500
+					});
+					//win_ficha.close();
+					//win_ficha.hide();
+					//win_galeria.show();
+					
+				}
+			})
 	
 	var view_sendsms = Titanium.UI.createView($$.view_sendsms);
 	var view_sendsms_txtzone = Titanium.UI.createView($$.view_sendsms_txtzone);
@@ -51,6 +217,7 @@ function crear_win_ficha(){
 	
 	win_ficha_deslizar_sup.addEventListener('touchstart',function(e){
 		this._yo=e.y;
+		win_ficha._swipe_zona.left='-1000dp';
 	});
 	
 	win_ficha_deslizar_sup.addEventListener('touchmove',function(e){
@@ -62,6 +229,7 @@ function crear_win_ficha(){
 	
 	win_ficha_deslizar_sup.addEventListener('touchend',function(e){
 		var desplazamiento= e.y - this._yo;
+		
 		if (desplazamiento > 45){
 			desplegar_view_sendsms(true);
 		}else if (desplazamiento < -45){
@@ -73,17 +241,18 @@ function crear_win_ficha(){
 			}else{
 				desplegar_view_sendsms(true);
 			}
-		}	
+		}
+		win_ficha._swipe_zona.left='0dp';	
 	});
 	
 	ventana.add(win_ficha_deslizar_sup);
 	ventana._win_ficha_deslizar_sup = win_ficha_deslizar_sup; 
 	
-	
 	var view_nombre = crear_view_nombre();
 	view_nombre.addEventListener('touchstart',function(e){
 		this._yo=e.y;
-		Titanium.API.info(this._yo)
+		Titanium.API.info(this._yo);
+		win_ficha._swipe_zona.left='-1000dp';
 	});
 	view_nombre.addEventListener('touchend',function(e){
 		var desplazamiento = e.y - this._yo;
@@ -93,6 +262,7 @@ function crear_win_ficha(){
 			ventana._view_datos.animate({top:'0dp',duration: 750})
 			
 		}
+		win_ficha._swipe_zona.left='0dp';
 	});
 	
 	ventana.add(view_nombre);
@@ -108,20 +278,11 @@ function crear_win_ficha(){
 			ventana._view_datos.animate({top:Titanium.Platform.displayCaps.platformHeight +1, duration: 750})
 			
 		}
-	});
-	
-	
-	
+	});	
 	
 	ventana.add(view_datos);
 	ventana._view_datos=view_datos;
 	ventana._view_datos.top=Titanium.Platform.displayCaps.platformHeight +1;
-	
-	
-	
-
-	
-	
 	
 	/*****************/
 	
@@ -139,7 +300,7 @@ function desplegar_view_sendsms(opt){
 		win_ficha._win_ficha_deslizar_sup._desplegado=true;
 		win_ficha._view_sendsms._view_sendsms_btnzone._view_btnzone_sobre._lbl_sendsms.visible=true;
 	}else{
-		win_ficha._view_sendsms.animate({top: -200});
+		win_ficha._view_sendsms.animate({top: '-200dp'});
 		win_ficha._view_sendsms._top=-200;
 		win_ficha._view_sendsms._view_sendsms_btnzone._view_btnzone_sobre.borderWidth=0;
 		win_ficha._view_sendsms._view_sendsms_btnzone._view_btnzone_llamar.visible=false;
@@ -147,9 +308,9 @@ function desplegar_view_sendsms(opt){
 		win_ficha._win_ficha_deslizar_sup.top='2dp';
 		win_ficha._win_ficha_deslizar_sup._desplegado=false;
 		win_ficha._view_sendsms._view_sendsms_btnzone._view_btnzone_sobre._lbl_sendsms.visible=false;
+		
 	}
 };
-
 function crear_deslizar_sup(){
 	var area = Titanium.UI.createView($$.deslizar_sup);
 	area._yo=0;
@@ -241,46 +402,72 @@ function crear_view_datos(){
 	
 };
 function load_datos_ficha(id){
-	var cumple = new Date(2000,08,20,0,0,0,0);
-	var hoy=new Date();
-	hoy.setHours(00,00,00,000);
-	var cumple_a = new Date(hoy.getFullYear(),cumple.getMonth(),cumple.getDate())
-	var dias = Math.floor((cumple_a - hoy )/1000/60/60/24); 
-	if(dias<0){
-		cumple_a.setFullYear(hoy.getFullYear()+1);
-		var dias = Math.floor((cumple_a - hoy )/1000/60/60/24); 
-	}
-	if(dias!=0){
-		if(dias>1){
-			dias='Faltan ' + dias + ' días';
-		}else{
-			dias='Falta ' + dias + ' día';
-		}
-	}else{
-		dias='Hoy es su cumpleaños;'
-	}
-	//alert(hoy + '\n' + cumple_a + '\n' + cumple );
-	//alert(hoy.getYear());
 	
-	win_ficha._view_nombre._lbl_nombre.setText('NOMBRE');
-	win_ficha._view_nombre._lbl_puesto.setText('PUESTO');
-	win_ficha.backgroundImage = 'images/fotop.png';
+	var json;
+	var xhr = Titanium.Network.createHTTPClient({
+		onload: function(e){
+			//alert(this.responseText);
+			json=this.responseText;			
+			json = JSON.parse(json);
+			var cumple = new Date(json['cumple'].aaaa,json['cumple'].mm - 1,json['cumple'].dd,0,0,0,0);
+			var hoy=new Date();
+			hoy.setHours(00,00,00,000);
+			var cumple_a = new Date(hoy.getFullYear(),cumple.getMonth(),cumple.getDate())
+			var dias = Math.floor((cumple_a - hoy )/1000/60/60/24); 
+			if(dias<0){
+				cumple_a.setFullYear(hoy.getFullYear()+1);
+				var dias = Math.floor((cumple_a - hoy )/1000/60/60/24); 
+			}
+			if(dias!=0){
+				if(dias>1){
+					dias='Faltan ' + dias + ' días';
+				}else{
+					dias='Falta ' + dias + ' día';
+				}
+			}else{
+				dias='Hoy es su cumpleaños;'
+			}
+			win_ficha._view_nombre._lbl_nombre.setText(json['nombre']);
+			win_ficha._view_nombre._lbl_puesto.setText(json['puesto']);
+			win_ficha.backgroundImage = json['foto'];
+			
+			win_ficha._view_datos._view_cumple._lbl_cumple_txt.setText(json['cumple'].dd +'-'+json['cumple'].mm+'-'+json['cumple'].aaaa+'\n' + dias);
+			win_ficha._view_datos._view_email._lbl_email_txt.setText(json['email']);
+			win_ficha._view_datos._view_movil._lbl_movil_txt.setText(json['movil']);
+			win_ficha._view_datos._view_intereses._lbl_intereses_txt.setText('\n'+json['intereses']);
+			win_ficha._view_datos._view_origen._lbl_origen_txt.setText(json['origen']);	
+			
+			win_ficha._view_sendsms._view_sendsms_btnzone._view_btnzone_llamar.addEventListener('click',function(e){
+				Titanium.Platform.openURL("tel:"+json['movil']);
+			})
+			
+			
+			
+			
+			
+			
+			
+			return json;
+		},
+		onerror: function(e){
+			alert('Error en la conexión');
+		},
+		timeout: 10000
+	});
 	
-	win_ficha._view_datos._view_cumple._lbl_cumple_txt.setText('10-2-3423 \n' + dias);
-	win_ficha._view_datos._view_email._lbl_email_txt.setText('email@falso.es');
-	win_ficha._view_datos._view_movil._lbl_movil_txt.setText('666666666');
-	win_ficha._view_datos._view_intereses._lbl_intereses_txt.setText('1 cosa\n2cosa\n3cosa');
-	win_ficha._view_datos._view_origen._lbl_origen_txt.setText('Ciudad origen Pais')	
+	xhr.open("GET",'192.168.0.114/ficha.php?id='+id);
+	xhr.send();
+	
+	
+	
+	
+	
 	
 }
 
 	/********************************/
 	/*   FIN FICHA INDIVIDUAL       */
 	/********************************/
-
-
-
-
 
 function cargar_galeria_fotos(){
 	var numero_fotos = 8*3;
@@ -304,8 +491,6 @@ function cargar_galeria_fotos(){
 		}
 	}
 }
-
-
 function cargar_ficha(id){
 	var yo =0;
 	var desplazamiento =0;

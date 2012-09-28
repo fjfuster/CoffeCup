@@ -1,7 +1,33 @@
 Titanium.UI.setBackgroundColor('#59678E');
 
-var win = Titanium.UI.createWindow($$.win);
+//var win = Titanium.UI.createWindow($$.win);
+
+var win_galeria = crear_win_galeria();
+
+
+//By Guille var win_galeria = obtener_galeria(crear_win_galeria);
+
+
+win_galeria.open();
+
+
 var win_ficha = crear_win_ficha();
+
+desplegar_view_sendsms(false);
+
+//load_datos_ficha(0);
+
+
+
+
+
+//win_ficha.open();
+
+
+
+
+
+
 
 /*
 
@@ -78,11 +104,13 @@ win_ficha._view_datos.top=Titanium.Platform.displayCaps.platformHeight +1;
 
 */
 
-desplegar_view_sendsms(false);
+
+/******Movido a la parte superior **************/
+/*desplegar_view_sendsms(false);
 load_datos_ficha(0);
 
-win_ficha.open();
-
+win_ficha.open();*/
+/****************************************************/
 
 
 

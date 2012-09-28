@@ -4,6 +4,35 @@ module.exports = {
 		exitOnClose: true,
 		backgroundColor: 'red'
 	},
+	/********************************/
+	/*       GALERIA FOTOS          */
+	/********************************/
+	win_galeria:{
+		exitOnClose: false
+	},
+	galeria_lbl:{
+		width: '100%',
+		height: '45dp',
+		backgroundColor: '#59678E',
+		top: 0,
+		textAlign: Titanium.UI.TEXT_ALIGNMENT_CENTER,
+		font:{
+			fontSize: 20,
+			
+		},
+		color: 'white'
+		
+	},
+	galeria_scrollview:{
+		width: Titanium.Platform.displayCaps.platformWidth - 4,
+		backgroundColor: 'black',
+		top: '48dp'
+	},
+	galeria_img:{
+		width: (Titanium.Platform.displayCaps.platformWidth - 25) /3
+	},
+	
+	
 	
 	/********************************/
 	/*       FICHA INDIVIDUAL       */
@@ -45,12 +74,13 @@ module.exports = {
 	},
 	img_sobre:{
 		image: 'images/sobre.png',
-		bottom: '5dp'
+		bottom: '5dp',
+		height: '23dp'
 	},
 	lbl_sendsms:{
 		text: 'SEND',
 		font:{
-			fontSize: 25
+			fontSize: '25dp'
 		},
 		top: '0dp'
 	},
@@ -81,7 +111,7 @@ module.exports = {
 		top: '2dp',
 		left: '5dp',
 		font:{
-			fontSize: 25
+			fontSize: '25dp'
 		}
 	},
 	view_nombre_lbl_puesto:{
@@ -89,12 +119,12 @@ module.exports = {
 		bottom: '5dp',
 		left: '5dp',
 		font:{
-			fontSize: 25
+			fontSize: '25dp'
 		}
 	},
 	view_ficha:{
 		backgroundColor: '#59678E',
-		height: Titanium.Platform.displayCaps.platformheight,
+		height: Titanium.Platform.displayCaps.platformHeight,
 		bottom: Titanium.Platform.displayCaps.platformHeight * -1
 	},
 	view_cumple:{
@@ -138,88 +168,94 @@ module.exports = {
 	text: 'Cumpleaños:',
 	top: 0,		
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-	left: 15,
+	left: '15dp',
 	font:{
-			fontSize: 20
+			fontSize: '20dp'
 		}
 	},
 	lbl_email:{
 	text: 'Email:',
 	top: 0,		
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-	left: 15,
+	left: '15dp',
 	font:{
-			fontSize: 20
+			fontSize: '20dp'
 		}
 	},
 	lbl_movil:{
 	text: 'Movil',
 	top: 0,		
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-	left: 15,
+	left: '15dp',
 	font:{
-			fontSize: 20
+			fontSize: '20dp'
 		}
 	},
 	lbl_intereses:{
 	text: 'Hablame de:',
 	top: 0,	
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-	left: 15,
+	left: '15dp',
 	font:{
-			fontSize: 20
+			fontSize: '20dp'
 		}
 	},
 	lbl_origen:{
 	text: 'Vengo de:',
 	top: 0,		
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_LEFT,
-	left: 15,
+	left: '15dp',
 	font:{
-			fontSize: 20
+			fontSize: '20dp'
 		}
 	},		
 		
 	lbl_cumple_txt:{
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
 	top: 0,	
-	right: 15,
+	right: '15dp',
 	font:{
-			fontSize: 18
+			fontSize: '18dp'
 		}
 	},
 	lbl_email_txt:{
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
 	top: 0,	
-	right: 15,
+	right: '15dp',
 	font:{
-			fontSize: 18
+			fontSize: '18dp'
 		}
 	},
 	lbl_movil_txt:{
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
 	top: 0,	
-	right: 15,
+	right: '15dp',
 	font:{
-			fontSize: 18
+			fontSize: '18dp'
 		}
 	},
 	lbl_intereses_txt:{
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
 	top: 0,	
-	right: 15,
+	right: '15dp',
 	font:{
-			fontSize: 18
+			fontSize: '18dp'
 		}
 	},
 	lbl_origen_txt:{
 	textAlign: Titanium.UI.TEXT_ALIGNMENT_RIGHT,
 	top: 0,	
-	right: 15,
+	right: '15dp',
 	font:{
-			fontSize: 18
+			fontSize: '18dp'
 		}
-	}
+	},
 		/******* ZONA FOTO ***********/
+	swipe_zona:{
+		height: '75%',
+		width: '100%',
+		zIndex: -1,
+		top: '50dp'
+	}
 	/******* ZONA MENSAJERIA ***********/		
 }

@@ -13,7 +13,7 @@ function obtener_galeria(){
 		onerror: function(e){
 			alert('Error en la conexión');
 		},
-		timeout: 10000
+		timeout: 10000 
 	});
 	
 	xhr.open("GET",'192.168.0.114/galeria.php');

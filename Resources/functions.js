@@ -16,7 +16,7 @@ function obtener_galeria(){
 		timeout: 10000 
 	});
 	
-	xhr.open("GET",'192.168.0.114/galeria.php');
+	xhr.open("GET",'http://servidordeprueba.net/webs/coffecup/galeria.php');
 	xhr.send();
 	
 };
@@ -455,7 +455,7 @@ function load_datos_ficha(id){
 		timeout: 10000
 	});
 	
-	xhr.open("GET",'192.168.0.114/ficha.php?id='+id);
+	xhr.open("GET",'http://servidordeprueba.net/webs/coffecup/ficha.php?id='+id);
 	xhr.send();
 	
 	
